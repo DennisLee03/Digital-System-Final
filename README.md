@@ -19,8 +19,20 @@ This is a **FPGA-based Whack-a-Mole game** implemented in Verilog. The project i
 ## 📋 To-Do List
 - [x] Design a timer for the game:
   - [x] Implement a countdown timer that starts from a configurable initial value (e.g., 30 seconds).
-  - [x] Stop the game when the timer reaches 0 by triggering a `game_stop` signal.
+  - [x] Stop the game when the timer reaches 0 by triggering a `stop` signal.
   - [x] Allow the game to reset and start a new session when the `reset` signal is activated.
+
+- [ ] Resolve the issue where `keypadBuf` retains its previous value when no button is pressed:
+  - [ ] Ensure that `hit` is not triggered unless a new button press updates the `keypadBuf`.
+  - [ ] Implement logic to detect "no input" scenarios and handle them appropriately.
+  - [ ] Test with various cases, such as no button pressed, multiple buttons pressed, and valid inputs.
+
+---
+
+## ⚙ Settings
+
+1. [Pin Assignment]()
+2. [Module Structure]()
 
 ---
 
