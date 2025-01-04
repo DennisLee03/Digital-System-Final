@@ -17,10 +17,10 @@ This is a **FPGA-based Whack-a-Mole game** implemented in Verilog. The project i
 ---
 
 ## 📋 To-Do List
-- [v] Design a timer for the game:
-  - [v] Implement a countdown timer that starts from a configurable initial value (e.g., 30 seconds).
-  - [v] Stop the game when the timer reaches 0 by triggering a `game_stop` signal.
-  - [v] Allow the game to reset and start a new session when the `reset` signal is activated.
+- [x] Design a timer for the game:
+  - [x] Implement a countdown timer that starts from a configurable initial value (e.g., 30 seconds).
+  - [x] Stop the game when the timer reaches 0 by triggering a `game_stop` signal.
+  - [x] Allow the game to reset and start a new session when the `reset` signal is activated.
 
 ---
 
