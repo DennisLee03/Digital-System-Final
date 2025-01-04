@@ -12,7 +12,7 @@ wire clk_1hz;
 wire [3:0] sec1, sec2;
 wire [3:0] position, counter;
 
-// setup timer
+// timer
 FD fd_1hz(.clk_50Mhz(clk), .reset(rst), .clock_div(clk_1hz));
 timer u_timer(
     .inGame(inGame), 
@@ -33,16 +33,7 @@ random u_rand(
 );
 SevenDisplay u_s3(.count(position), .out(seg3));
 
-FD#(.TIME_EXPIRE(1)) fd_25hz(.clk_50Mhz(clk), .reset(rst), .clock_div(clk_25MHz));
-vga_driver VGA_disp(
-    .reset(rst), 
-    .clk(clk), 
-    .o_hsync(o_Hsync), 
-    .o_vsync(o_Vsync), 
-    .o_red(o_red), 
-    .o_green(o_green), 
-    .o_blue(o_blue)
-);
+
 
 endmodule
 

@@ -6,6 +6,9 @@
 module vga_driver(
 	input rst,
 	input clk,           // 50 MHz
+	input inGame,
+	input hit,
+	input [3:0] position,
 	output o_hsync,      // horizontal sync
 	output o_vsync,	     // vertical sync
 	output [3:0] o_red,
@@ -18,6 +21,8 @@ module vga_driver(
 	reg [3:0] r_red = 0;
 	reg [3:0] r_blue = 0;
 	reg [3:0] r_green = 0;
+
+	reg stop = 0;
 	
 	reg reset = 0;  // for PLL
 	
@@ -53,24 +58,24 @@ module vga_driver(
 		end  // always 
 	
 	always @ (posedge clk25MHz or negedge rst)  // vertical counter
-		begin 
-			if(!rst) begin
-				counter_y <= 0;
-			end
+	begin 
+		if(!rst) begin
+			counter_y <= 0;
+		end
 
+		else begin
+			if (counter_x == 799)  // only counts up 1 count after horizontal finishes 800 counts
+				begin
+					if (counter_y < 525)  // vertical counter (including off-screen vertical 45 pixels) total of 525 pixels
+						counter_y <= counter_y + 1;
+					else
+						counter_y <= 0;              
+				end  // if (counter_x...
 			else begin
-				if (counter_x == 799)  // only counts up 1 count after horizontal finishes 800 counts
-					begin
-						if (counter_y < 525)  // vertical counter (including off-screen vertical 45 pixels) total of 525 pixels
-							counter_y <= counter_y + 1;
-						else
-							counter_y <= 0;              
-					end  // if (counter_x...
-				else begin
-					counter_y <= counter_y;
-				end
+				counter_y <= counter_y;
 			end
-		end  // always
+		end
+	end  // always
 	// end counter and sync generation  
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -81,11 +86,104 @@ module vga_driver(
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// pattern generate
-		always @ (posedge clk25MHz)
-		begin
-            // draw pattern here!!!!
-			
-        end
+	always @ (posedge clk25MHz or negedge rst)
+	begin
+		if(!rst) begin
+			stop <= 0;
+			r_red <= 4'hf;
+			r_green <= 4'hf;
+			r_blue <= 4'hf;
+		end
+		else begin
+			if(inGame && !stop) begin
+				// draw pattern here!!!
+				case (position)
+					1: begin
+						if(hit) begin
+							// red pattern
+						end
+						else begin
+							// green pattern
+						end
+					end
+					2: begin
+						if(hit) begin
+							// red pattern
+						end
+						else begin
+							// green pattern
+						end
+					end
+					3: begin
+						if(hit) begin
+							// red pattern
+						end
+						else begin
+							// green pattern
+						end
+					end
+					4: begin
+						if(hit) begin
+							// red pattern
+						end
+						else begin
+							// green pattern
+						end
+					end
+					5: begin
+						if(hit) begin
+							// red pattern
+						end
+						else begin
+							// green pattern
+						end
+					end
+					6: begin
+						if(hit) begin
+							// red pattern
+						end
+						else begin
+							// green pattern
+						end
+					end
+					7: begin
+						if(hit) begin
+							// red pattern
+						end
+						else begin
+							// green pattern
+						end
+					end
+					8: begin
+						if(hit) begin
+							// red pattern
+						end
+						else begin
+							// green pattern
+						end
+					end
+					9: begin
+						if(hit) begin
+							// red pattern
+						end
+						else begin
+							// green pattern
+						end
+					end
+					default: begin
+						// not in square 1~9, so we don't display a mole
+						// just display nine-square grid without any mole
+					end
+				endcase
+			end
+			else begin
+				// basic pattern
+				r_red <= 4'hf;
+				r_green <= 4'hf;
+				r_blue <= 4'hf;
+			end
+		end
+	end
 	// end pattern generate
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,9 +1,11 @@
-module GameLogic(rst, clk_2hz, keypadBuf, position, toDisp, toScore);
+module GameLogic(rst, keypadBuf, position, hit);
 
-input rst, clk_2hz;
-input [3:0] position;
+input rst;
+input [3:0] position; // restricted in 1~9
 input [3:0] keypadBuf;
 
-output reg toDisp, toScore;
+output hit;
+
+assign hit = (keypadBuf == position) && !rst;
 
 endmodule //GameLogic
