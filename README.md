@@ -16,6 +16,14 @@ This is a **FPGA-based Whack-a-Mole game** implemented in Verilog. The project i
 
 ---
 
+## 📋 To-Do List
+- [ ] Design a timer for the game:
+  - [ ] Implement a countdown timer that starts from a configurable initial value (e.g., 30 seconds).
+  - [ ] Stop the game when the timer reaches 0 by triggering a `game_stop` signal.
+  - [ ] Allow the game to reset and start a new session when the `reset` signal is activated.
+
+---
+
 ## 📖 References
 1. [VGA Basic 1](https://www.youtube.com/watch?v=mR-eo7a4n5Q&t=101s) - To know basic VGA signals
 2. [VGA Basic 2](https://www.cnblogs.com/liujinggang/p/9690504.html) - To know basic VGA signals
