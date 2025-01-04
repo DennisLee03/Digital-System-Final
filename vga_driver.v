@@ -96,7 +96,7 @@ module vga_driver(
 		end
 		else begin
 			if(inGame && !stop) begin
-				// draw pattern here!!!
+			// draw pattern here!!!
 				if(counter_y > 35 && counter_y <= 80) begin
 					r_red <= 4'h0;
 					r_green <= 4'h0;
@@ -127,9 +127,9 @@ module vga_driver(
 								end  
 								else
 								begin
-									r_red <= 4'h0;
-									r_green <= 4'h0;
-									r_blue <= 4'h0;
+									r_red <= 4'hf;
+									r_green <= 4'hf;
+									r_blue <= 4'hf;
 								end
 							end
 							2: begin
@@ -145,9 +145,9 @@ module vga_driver(
 								end  
 								else
 								begin
-									r_red <= 4'h0;
-									r_green <= 4'h0;
-									r_blue <= 4'h0;
+									r_red <= 4'hf;
+									r_green <= 4'hf;
+									r_blue <= 4'hf;
 								end
 							end 
 							3: begin
@@ -163,9 +163,9 @@ module vga_driver(
 								end  
 								else
 								begin
-									r_red <= 4'h0;
-									r_green <= 4'h0;
-									r_blue <= 4'h0;
+									r_red <= 4'hf;
+									r_green <= 4'hf;
+									r_blue <= 4'hf;
 								end
 							end 
 							4: begin
@@ -181,9 +181,9 @@ module vga_driver(
 								end  
 								else
 								begin
-									r_red <= 4'h0;
-									r_green <= 4'h0;
-									r_blue <= 4'h0;
+									r_red <= 4'hf;
+									r_green <= 4'hf;
+									r_blue <= 4'hf;
 								end
 							end 
 							5: begin
@@ -199,9 +199,9 @@ module vga_driver(
 								end  
 								else
 								begin
-									r_red <= 4'h0;
-									r_green <= 4'h0;
-									r_blue <= 4'h0;
+									r_red <= 4'hf;
+									r_green <= 4'hf;
+									r_blue <= 4'hf;
 								end
 							end 
 							6: begin
@@ -217,9 +217,9 @@ module vga_driver(
 								end  
 								else
 								begin
-									r_red <= 4'h0;
-									r_green <= 4'h0;
-									r_blue <= 4'h0;
+									r_red <= 4'hf;
+									r_green <= 4'hf;
+									r_blue <= 4'hf;
 								end
 							end 
 							7: begin
@@ -235,9 +235,9 @@ module vga_driver(
 								end  
 								else
 								begin
-									r_red <= 4'h0;
-									r_green <= 4'h0;
-									r_blue <= 4'h0;
+									r_red <= 4'hf;
+									r_green <= 4'hf;
+									r_blue <= 4'hf;
 								end
 							end 
 							8: begin
@@ -253,27 +253,27 @@ module vga_driver(
 								end  
 								else
 								begin
-									r_red <= 4'h0;
-									r_green <= 4'h0;
-									r_blue <= 4'h0;
+									r_red <= 4'hf;
+									r_green <= 4'hf;
+									r_blue <= 4'hf;
 								end
 							end 
 							9: begin
-								if(counter_x > 359 && counter_x <= 619 && counter_y > 110 && counter_y <= 170 && hit) begin
+								if(counter_x > 559 && counter_x <= 619 && counter_y > 110 && counter_y <= 170 && hit) begin
 									r_red <= 4'hf;
 									r_green <= 4'h0;
 									r_blue <= 4'h0;
 								end
-								else if(counter_x > 359 && counter_x <= 619 <= 494 && counter_y > 110 && counter_y <= 170 && !hit) begin
+								else if(counter_x > 559 && counter_x <= 619 && counter_y > 110 && counter_y <= 170 && !hit) begin
 									r_red <= 4'h0;
 									r_green <= 4'hf;
 									r_blue <= 4'h0;
 								end  
 								else
 								begin
-									r_red <= 4'h0;
-									r_green <= 4'h0;
-									r_blue <= 4'h0;
+									r_red <= 4'hf;
+									r_green <= 4'hf;
+									r_blue <= 4'hf;
 								end
 							end  
 							default: // white square
@@ -309,55 +309,6 @@ module vga_driver(
 					r_red <= 4'h0;
 					r_green <= 4'h0;
 					r_blue <= 4'h0;
-				end
-				else 
-				begin
-					if(counter_y > 35 && counter_y <= 80) begin
-						r_red <= 4'h0;
-						r_green <= 4'h0;
-						r_blue <= 4'h0;
-					end
-					// squares
-					else if((counter_y > 80 && counter_y <= 200) || (counter_y > 205 && counter_y <= 325) || (counter_y > 330 && counter_y <= 450)) 
-					begin
-						if((counter_x >= 144 && counter_x <= 279))
-						begin
-							r_red <= 4'h0;
-							r_green <= 4'h0;
-							r_blue <= 4'h0;
-						end
-						else if((counter_x > 279 && counter_x <= 399) || (counter_x > 404 && counter_x <= 524) || (counter_x > 529 && counter_x <= 649)) 
-						begin
-							r_red <= 4'hf;
-							r_green <= 4'hf;
-							r_blue <= 4'hf;
-						end
-						else if((counter_x > 399 && counter_x <= 404) || (counter_x > 524 && counter_x <= 529))
-						begin
-							r_red <= 4'h0;
-							r_green <= 4'h0;
-							r_blue <= 4'h0;
-						end
-						else 
-						begin
-							r_red <= 4'h0;
-							r_green <= 4'h0;
-							r_blue <= 4'h0;
-						end			
-					end
-					// line
-					else if((counter_y > 200 && counter_y <= 205) || (counter_y > 325 && counter_y <= 330)) 
-					begin
-						r_red <= 4'h0;
-						r_green <= 4'h0;
-						r_blue <= 4'h0;
-					end
-					//(counter_y > 450 && counter_y <= 514)
-					else begin
-						r_red <= 4'h0;
-						r_green <= 4'h0;
-						r_blue <= 4'h0;
-					end
 				end
 			end
 			// basic pattern
