@@ -1,6 +1,11 @@
+`timescale 1ns / 1ps
+
+// image generator of a road and a sky 640x480 @ 60 fps
+
+////////////////////////////////////////////////////////////////////////
 module vga_driver(
-    input rst,
-    input clk_25MHz,
+	input rst,
+	input clk,           // 50 MHz
 	output o_hsync,      // horizontal sync
 	output o_vsync,	     // vertical sync
 	output [3:0] o_red,
@@ -13,25 +18,58 @@ module vga_driver(
 	reg [3:0] r_red = 0;
 	reg [3:0] r_blue = 0;
 	reg [3:0] r_green = 0;
+	
+	reg reset = 0;  // for PLL
+	
+	wire clk25MHz;
 
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// clk divider 50 MHz to 25 MHz
+	// don't touch this divider!!!!!
+	ip ip1(
+		.areset(reset),
+		.inclk0(clk),
+		.c0(clk25MHz),
+		.locked()
+		);  
+	// end clk divider 50 MHz to 25 MHz
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// counter and sync generation
-	always @(posedge clk_25MHz)  // horizontal counter
+	always @(posedge clk25MHz or negedge rst)  // horizontal counter
 		begin 
-			if (counter_x < 799)
-				counter_x <= counter_x + 1;  // horizontal counter (including off-screen horizontal 160 pixels) total of 800 pixels 
-			else
-				counter_x <= 0;              
+			if(!rst) begin
+				counter_x <= 0;
+			end
+
+			else begin
+				if (counter_x < 799)
+					counter_x <= counter_x + 1;  // horizontal counter (including off-screen horizontal 160 pixels) total of 800 pixels 
+				else
+					counter_x <= 0;
+			end
+
+			              
 		end  // always 
 	
-	always @ (posedge clk_25MHz)  // vertical counter
+	always @ (posedge clk25MHz or negedge rst)  // vertical counter
 		begin 
-			if (counter_x == 799)  // only counts up 1 count after horizontal finishes 800 counts
-				begin
-					if (counter_y < 525)  // vertical counter (including off-screen vertical 45 pixels) total of 525 pixels
-						counter_y <= counter_y + 1;
-					else
-						counter_y <= 0;              
-				end  // if (counter_x...
+			if(!rst) begin
+				counter_y <= 0;
+			end
+
+			else begin
+				if (counter_x == 799)  // only counts up 1 count after horizontal finishes 800 counts
+					begin
+						if (counter_y < 525)  // vertical counter (including off-screen vertical 45 pixels) total of 525 pixels
+							counter_y <= counter_y + 1;
+						else
+							counter_y <= 0;              
+					end  // if (counter_x...
+				else begin
+					counter_y <= counter_y;
+				end
+			end
 		end  // always
 	// end counter and sync generation  
 
@@ -43,11 +81,10 @@ module vga_driver(
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// pattern generate
-		always@(posedge clk_25MHz)
+		always @ (posedge clk25MHz)
 		begin
-            r_blue <= 4'hf;
-            r_green <= 4'hf;
-            r_red <= 4'hf;
+            // draw pattern here!!!!
+			
         end
 	// end pattern generate
 
