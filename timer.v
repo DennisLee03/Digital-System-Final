@@ -1,9 +1,9 @@
-module timer(inGame, rst, clk_1hz, sec1, sec2, counter);
+module timer(inGame, rst, clk_1hz, sec1, sec2, stop);
 
 input inGame, rst, clk_1hz;
 output reg [3:0] sec1, sec2;
-output reg [4:0] counter;
-reg stop;
+output reg stop;
+reg [4:0] counter;
 
 initial begin
     counter=30;

@@ -4,6 +4,7 @@
 
 ////////////////////////////////////////////////////////////////////////
 module vga_driver(
+	input stop,
 	input rst,
 	input clk,           // 50 MHz
 	input inGame,
@@ -21,8 +22,6 @@ module vga_driver(
 	reg [3:0] r_red = 0;
 	reg [3:0] r_blue = 0;
 	reg [3:0] r_green = 0;
-
-	reg stop;
 	
 	reg reset = 0;  // for PLL
 	

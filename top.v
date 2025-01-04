@@ -16,8 +16,9 @@ output wire [7:0] tens_col; // Dot matrix column for tens digit
 output wire [7:0] units_col;  // Dot matrix column for units digit
 
 wire clk_1hz, clk_1khz, clk_div;
+wire stop;
 wire [3:0] sec1, sec2;
-wire [3:0] position, counter;
+wire [3:0] position;
 wire [3:0] keypadBuf;
 
 
@@ -29,7 +30,7 @@ timer u_timer(
     .clk_1hz(clk_1hz), 
     .sec1(sec1), 
     .sec2(sec2), 
-    .counter(counter)
+    .stop(stop)
 );
 SevenDisplay u_s1(.count(sec1), .out(seg1));
 SevenDisplay u_s2(.count(sec2), .out(seg2));
@@ -50,13 +51,14 @@ CheckKeyPad u_keypad(
     .keypadRow(keypadRow), 
     .keypadBuf(keypadBuf)
 );
-SevenDisplay u_s3(.count(keypadBuf), .out(seg3));
 
 
-// TODO: hit will remain previous value
+// TODO: keypadBuf will remain previous value
+// It means that our mallets are in the same position to whack-a-mole if we don't press other buttons
 assign hit = (keypadBuf == position);
 
 vga_driver VGA_disp(
+    .stop(stop),
 	.rst(rst),
 	.clk(clk),           // 50 MHz
 	.inGame(inGame),
