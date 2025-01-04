@@ -22,7 +22,7 @@ module vga_driver(
 	reg [3:0] r_blue = 0;
 	reg [3:0] r_green = 0;
 
-	reg stop = 0;
+	reg stop;
 	
 	reg reset = 0;  // for PLL
 	
@@ -89,7 +89,6 @@ module vga_driver(
 	always @ (posedge clk25MHz or negedge rst)
 	begin
 		if(!rst) begin
-			stop <= 0;
 			r_red <= 4'hf;
 			r_green <= 4'hf;
 			r_blue <= 4'hf;

@@ -1,16 +1,20 @@
 `timescale 1ns / 1ps
 
-module top(rst, inGame, hit, clk, seg1, seg2, seg3, o_hsync, o_vsync, o_red, o_green, o_blue);
+module top(rst, inGame, clk, seg1, seg2, seg3, o_hsync, o_vsync, o_red, o_green, o_blue, keypadCol, keypadRow);
 
-input rst, inGame, hit, clk;
+input rst, inGame, clk;
+input [3:0] keypadCol;
+output [3:0] keypadRow;
+
 output [6:0] seg1, seg2, seg3;//seg3用來debug地鼠的位置，之後可以拔掉
 
 output o_hsync, o_vsync;
 output [3:0] o_red, o_green, o_blue;
 
-wire clk_1hz, clk_div;
+wire clk_1hz, clk_1khz, clk_div;
 wire [3:0] sec1, sec2;
 wire [3:0] position, counter;
+wire [3:0] keypadBuf;
 
 // timer
 FD fd_1hz(.clk_50Mhz(clk), .reset(rst), .clock_div(clk_1hz));
@@ -32,7 +36,19 @@ random u_rand(
     .clk_1hz(clk_div), 
     .position(position)
 );
-SevenDisplay u_s3(.count(position), .out(seg3));
+
+FD#(.TIME_EXPIRE(25000)) fd_1khz(.clk_50Mhz(clk), .reset(rst), .clock_div(clk_1khz));
+CheckKeyPad u_keypad(
+    .clk_div(clk_1khz), 
+    .reset(rst), 
+    .keypadCol(keypadCol), 
+    .keypadRow(keypadRow), 
+    .keypadBuf(keypadBuf)
+);
+SevenDisplay u_s3(.count(keypadBuf), .out(seg3));
+
+// TODO: hit will remain previous value
+assign hit = (keypadBuf == position);
 
 vga_driver VGA_disp(
 	.rst(rst),
