@@ -17,6 +17,6 @@ This is a **FPGA-based Whack-a-Mole game** implemented in Verilog. The project i
 ---
 
 ## 📖 References
-1. [VGA Basic 1](https://www.youtube.com/watch?v=mR-eo7a4n5Q&t=101s): to know basic VGA signals
-2. [VGA Basic 2](https://www.cnblogs.com/liujinggang/p/9690504.html): to know basic VGA signals
+1. [VGA Basic 1](https://www.youtube.com/watch?v=mR-eo7a4n5Q&t=101s) - To know basic VGA signals
+2. [VGA Basic 2](https://www.cnblogs.com/liujinggang/p/9690504.html) - To know basic VGA signals
 3. [Whack A Mole idea](https://blog.csdn.net/qq_43499622/article/details/100742468)
