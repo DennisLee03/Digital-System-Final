@@ -97,84 +97,268 @@ module vga_driver(
 		else begin
 			if(inGame && !stop) begin
 				// draw pattern here!!!
-				case (position)
-					1: begin
-						if(hit) begin
-							// red pattern
-						end
-						else begin
-							// green pattern
-						end
+				if(counter_y > 35 && counter_y <= 80) begin
+					r_red <= 4'h0;
+					r_green <= 4'h0;
+					r_blue <= 4'h0;
+				end
+				// squares
+				else if((counter_y > 80 && counter_y <= 200) || (counter_y > 205 && counter_y <= 325) || (counter_y > 330 && counter_y <= 450)) 
+				begin
+					if((counter_x >= 144 && counter_x <= 279))
+					begin
+						r_red <= 4'h0;
+						r_green <= 4'h0;
+						r_blue <= 4'h0;
 					end
-					2: begin
-						if(hit) begin
-							// red pattern
-						end
-						else begin
-							// green pattern
-						end
+					else if((counter_x > 279 && counter_x <= 399) || (counter_x > 404 && counter_x <= 524) || (counter_x > 529 && counter_x <= 649)) 
+					begin
+						case (position)
+							1: begin
+								if(counter_x > 309 && counter_x <= 369 && counter_y > 360 && counter_y <= 420 && hit) begin
+									r_red <= 4'hf;
+									r_green <= 4'h0;
+									r_blue <= 4'h0;
+								end
+								else if(counter_x > 309 && counter_x <= 369 && counter_y > 360 && counter_y <= 420 && !hit) begin
+									r_red <= 4'h0;
+									r_green <= 4'hf;
+									r_blue <= 4'h0;
+								end  
+								else
+								begin
+									r_red <= 4'h0;
+									r_green <= 4'h0;
+									r_blue <= 4'h0;
+								end
+							end
+							2: begin
+								if(counter_x > 309 && counter_x <= 369 && counter_y > 235 && counter_y <= 295 && hit) begin
+									r_red <= 4'hf;
+									r_green <= 4'h0;
+									r_blue <= 4'h0;
+								end
+								else if(counter_x > 309 && counter_x <= 369 && counter_y > 235 && counter_y <= 295 && !hit) begin
+									r_red <= 4'h0;
+									r_green <= 4'hf;
+									r_blue <= 4'h0;
+								end  
+								else
+								begin
+									r_red <= 4'h0;
+									r_green <= 4'h0;
+									r_blue <= 4'h0;
+								end
+							end 
+							3: begin
+								if(counter_x > 309 && counter_x <= 369 && counter_y > 110 && counter_y <= 170 && hit) begin
+									r_red <= 4'hf;
+									r_green <= 4'h0;
+									r_blue <= 4'h0;
+								end
+								else if(counter_x > 309 && counter_x <= 369 && counter_y > 110 && counter_y <= 170 && !hit) begin
+									r_red <= 4'h0;
+									r_green <= 4'hf;
+									r_blue <= 4'h0;
+								end  
+								else
+								begin
+									r_red <= 4'h0;
+									r_green <= 4'h0;
+									r_blue <= 4'h0;
+								end
+							end 
+							4: begin
+								if(counter_x > 434 && counter_x <= 494 && counter_y > 360 && counter_y <= 420 && hit) begin
+									r_red <= 4'hf;
+									r_green <= 4'h0;
+									r_blue <= 4'h0;
+								end
+								else if(counter_x > 434 && counter_x <= 494 && counter_y > 360 && counter_y <= 420 && !hit) begin
+									r_red <= 4'h0;
+									r_green <= 4'hf;
+									r_blue <= 4'h0;
+								end  
+								else
+								begin
+									r_red <= 4'h0;
+									r_green <= 4'h0;
+									r_blue <= 4'h0;
+								end
+							end 
+							5: begin
+								if(counter_x > 434 && counter_x <= 494 && counter_y > 235 && counter_y <= 295 && hit) begin
+									r_red <= 4'hf;
+									r_green <= 4'h0;
+									r_blue <= 4'h0;
+								end
+								else if(counter_x > 434 && counter_x <= 494 && counter_y > 235 && counter_y <= 295 && !hit) begin
+									r_red <= 4'h0;
+									r_green <= 4'hf;
+									r_blue <= 4'h0;
+								end  
+								else
+								begin
+									r_red <= 4'h0;
+									r_green <= 4'h0;
+									r_blue <= 4'h0;
+								end
+							end 
+							6: begin
+								if(counter_x > 434 && counter_x <= 494 && counter_y > 110 && counter_y <= 170 && hit) begin
+									r_red <= 4'hf;
+									r_green <= 4'h0;
+									r_blue <= 4'h0;
+								end
+								else if(counter_x > 434 && counter_x <= 494 && counter_y > 110 && counter_y <= 170 && !hit) begin
+									r_red <= 4'h0;
+									r_green <= 4'hf;
+									r_blue <= 4'h0;
+								end  
+								else
+								begin
+									r_red <= 4'h0;
+									r_green <= 4'h0;
+									r_blue <= 4'h0;
+								end
+							end 
+							7: begin
+								if(counter_x > 559 && counter_x <= 619 && counter_y > 360 && counter_y <= 420 && hit) begin
+									r_red <= 4'hf;
+									r_green <= 4'h0;
+									r_blue <= 4'h0;
+								end
+								else if(counter_x > 559 && counter_x <= 619 && counter_y > 360 && counter_y <= 420 && !hit) begin
+									r_red <= 4'h0;
+									r_green <= 4'hf;
+									r_blue <= 4'h0;
+								end  
+								else
+								begin
+									r_red <= 4'h0;
+									r_green <= 4'h0;
+									r_blue <= 4'h0;
+								end
+							end 
+							8: begin
+								if(counter_x > 559 && counter_x <= 619 && counter_y > 235 && counter_y <= 295 && hit) begin
+									r_red <= 4'hf;
+									r_green <= 4'h0;
+									r_blue <= 4'h0;
+								end
+								else if(counter_x > 559 && counter_x <= 619 && counter_y > 235 && counter_y <= 295 && !hit) begin
+									r_red <= 4'h0;
+									r_green <= 4'hf;
+									r_blue <= 4'h0;
+								end  
+								else
+								begin
+									r_red <= 4'h0;
+									r_green <= 4'h0;
+									r_blue <= 4'h0;
+								end
+							end 
+							9: begin
+								if(counter_x > 359 && counter_x <= 619 && counter_y > 110 && counter_y <= 170 && hit) begin
+									r_red <= 4'hf;
+									r_green <= 4'h0;
+									r_blue <= 4'h0;
+								end
+								else if(counter_x > 359 && counter_x <= 619 <= 494 && counter_y > 110 && counter_y <= 170 && !hit) begin
+									r_red <= 4'h0;
+									r_green <= 4'hf;
+									r_blue <= 4'h0;
+								end  
+								else
+								begin
+									r_red <= 4'h0;
+									r_green <= 4'h0;
+									r_blue <= 4'h0;
+								end
+							end  
+							default: // white square
+							begin
+								r_red <= 4'hf;
+								r_green <= 4'hf;
+								r_blue <= 4'hf;
+							end 
+						endcase
 					end
-					3: begin
-						if(hit) begin
-							// red pattern
-						end
-						else begin
-							// green pattern
-						end
+					else if((counter_x > 399 && counter_x <= 404) || (counter_x > 524 && counter_x <= 529))
+					begin
+						r_red <= 4'h0;
+						r_green <= 4'h0;
+						r_blue <= 4'h0;
 					end
-					4: begin
-						if(hit) begin
-							// red pattern
-						end
-						else begin
-							// green pattern
-						end
+					else 
+					begin
+						r_red <= 4'h0;
+						r_green <= 4'h0;
+						r_blue <= 4'h0;
+					end			
+				end
+				// line
+				else if((counter_y > 200 && counter_y <= 205) || (counter_y > 325 && counter_y <= 330)) 
+				begin
+					r_red <= 4'h0;
+					r_green <= 4'h0;
+					r_blue <= 4'h0;
+				end
+				//(counter_y > 450 && counter_y <= 514)
+				else begin
+					r_red <= 4'h0;
+					r_green <= 4'h0;
+					r_blue <= 4'h0;
+				end
+				else 
+				begin
+					if(counter_y > 35 && counter_y <= 80) begin
+						r_red <= 4'h0;
+						r_green <= 4'h0;
+						r_blue <= 4'h0;
 					end
-					5: begin
-						if(hit) begin
-							// red pattern
+					// squares
+					else if((counter_y > 80 && counter_y <= 200) || (counter_y > 205 && counter_y <= 325) || (counter_y > 330 && counter_y <= 450)) 
+					begin
+						if((counter_x >= 144 && counter_x <= 279))
+						begin
+							r_red <= 4'h0;
+							r_green <= 4'h0;
+							r_blue <= 4'h0;
 						end
-						else begin
-							// green pattern
+						else if((counter_x > 279 && counter_x <= 399) || (counter_x > 404 && counter_x <= 524) || (counter_x > 529 && counter_x <= 649)) 
+						begin
+							r_red <= 4'hf;
+							r_green <= 4'hf;
+							r_blue <= 4'hf;
 						end
+						else if((counter_x > 399 && counter_x <= 404) || (counter_x > 524 && counter_x <= 529))
+						begin
+							r_red <= 4'h0;
+							r_green <= 4'h0;
+							r_blue <= 4'h0;
+						end
+						else 
+						begin
+							r_red <= 4'h0;
+							r_green <= 4'h0;
+							r_blue <= 4'h0;
+						end			
 					end
-					6: begin
-						if(hit) begin
-							// red pattern
-						end
-						else begin
-							// green pattern
-						end
+					// line
+					else if((counter_y > 200 && counter_y <= 205) || (counter_y > 325 && counter_y <= 330)) 
+					begin
+						r_red <= 4'h0;
+						r_green <= 4'h0;
+						r_blue <= 4'h0;
 					end
-					7: begin
-						if(hit) begin
-							// red pattern
-						end
-						else begin
-							// green pattern
-						end
+					//(counter_y > 450 && counter_y <= 514)
+					else begin
+						r_red <= 4'h0;
+						r_green <= 4'h0;
+						r_blue <= 4'h0;
 					end
-					8: begin
-						if(hit) begin
-							// red pattern
-						end
-						else begin
-							// green pattern
-						end
-					end
-					9: begin
-						if(hit) begin
-							// red pattern
-						end
-						else begin
-							// green pattern
-						end
-					end
-					default: begin
-						// not in square 1~9, so we don't display a mole
-						// just display nine-square grid without any mole
-					end
-				endcase
+				end
 			end
 			// basic pattern
 			else begin
